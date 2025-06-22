@@ -13,10 +13,8 @@ var DB *sql.DB
 
 func Connect() {
 	var err error
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Couldn't load the Env File: ",err )
-	}
+    godotenv.Load()
+	
 	dsn := os.Getenv("MYSQL_DSN")
 	DB, err = sql.Open("mysql", dsn)
 	if err != nil {

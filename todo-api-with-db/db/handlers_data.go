@@ -1,7 +1,6 @@
 package db 
 
 import (
-	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -12,7 +11,6 @@ type Todo struct {
 }
 
 var Todos []Todo
-var DB *sql.DB // Make sure to assign this from your db package
 
 func InsertTodo(title string) error {
 	_, err := DB.Exec("INSERT INTO todos (title) VALUES (?)", title)
