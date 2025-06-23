@@ -10,7 +10,6 @@ type Todo struct {
 	Done  bool   `json:"done"`
 }
 
-var Todos []Todo
 
 func InsertTodo(title string) error {
 	_, err := DB.Exec("INSERT INTO todos (title) VALUES (?)", title)
