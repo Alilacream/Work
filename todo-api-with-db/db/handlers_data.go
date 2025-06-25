@@ -40,7 +40,7 @@ func GetAllTodos() ([]Todo, error) {
 	}
 	defer rows.Close()
 	var todos []Todo
-	for rows.Next() { // hna drti l error
+	for  rows.Next() { // hna drti l error
 		var todo Todo
 		err := rows.Scan(&todo.Id, &todo.Title, &todo.Done)
 		if err != nil {
@@ -50,3 +50,5 @@ func GetAllTodos() ([]Todo, error) {
 	}
 	return todos, nil
 }
+// talbeau: rows.Next
+// ligne _ colone || NULL

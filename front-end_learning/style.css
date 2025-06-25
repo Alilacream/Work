@@ -19,6 +19,13 @@ input{
     right: 0;
     display: none;
 }
-.open #sidebar{
+.open .sidebar{
     display:block;
+}
+#click1 {
+    border-radius: 20px;
+    background-color: rgba(5, 8, 11, 0.786);
+    color : white; 
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 20% 0;
 }

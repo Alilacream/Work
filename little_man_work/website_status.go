@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"fmt"
     "sync"
     "time"
@@ -44,10 +45,12 @@ func analyse_status_websitev(url string, ch chan string, wg *sync.WaitGroup){
 		sites := []string{"google.com", "zip.com", "doesnotexist.com",}
 		status := make(chan string, len(sites))
 		file , err := os.Create("status.txt")
+		if err != nil {
+			log.Fatal("Couldn't create the status.txt file")
+		}
 		defer file.Close()
 		if err != nil {
-			fmt.Println("the file had some management issues.\n")
-			os.Exit(0)
+			log.Fatal("the file had some management issues.\n")
 		}
 
 	for i:= 0 ; i<3; i++{
