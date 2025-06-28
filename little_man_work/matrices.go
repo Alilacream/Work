@@ -6,10 +6,20 @@ import (
 	"log"
 	"os"
 	"strconv"
-	"strings"
 )
-func Cal(t [][]int, a,b int) [][]int {
-	return t[a][b]
+
+func Determinant3x3(m [][]int) int {
+	a := m[0][0]
+	b := m[0][1]
+	c := m[0][2]
+	d := m[1][0]
+	e := m[1][1]
+	f := m[1][2]
+	g := m[2][0]
+	h := m[2][1]
+	i := m[2][2]
+
+	return a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g)
 }
 func main() {
 	if (len(os.Args)!= 3) {
@@ -32,7 +42,7 @@ func main() {
 	for i:= 0 ; i <line_int;i++ {
 		for j :=0; j<row_int;j++ {
 			if scanner.Scan() {
-				fmt.Printf("For Line <%d> - Row <%d>: ")
+				fmt.Printf("For Line <%d> - Row <%d>: ", i , j)
 				numstr := scanner.Text()
 				number , err := strconv.Atoi(numstr)
 				if err != nil {
@@ -44,14 +54,20 @@ func main() {
 		}	 
 	}
 	fmt.Println("Choose  what you want to calculate in this: 1-Determinant\n 2-Transpose\n 3-inverse\n 4-Con")
+	if scanner.Scan() {
 	choose := scanner.Text()
 	choice , err := strconv.Atoi(choose)
+	if err != nil {
+		log.Fatal("Invalid Input number")
+		switch choice {
+		case 1 :
+			determinant := Determinant3x3(Table) 
+			fmt.Printf("The determinant of the matrice is %d\n", determinant)
+		default:
+			fmt.Println("Not implemented yet")
+		}
+	}
 
-	switch choice {
-	case 1 :
-		milieu : rows_int-1
-		determinant := Table[1][1]*(Cal(Table),) // on progress 
-		break
 	}
 	
 	
