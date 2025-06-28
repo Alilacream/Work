@@ -38,35 +38,35 @@ func analyse_status_websitev(url string, ch chan string, wg *sync.WaitGroup){
 		
 		ch <-fmt.Sprintf("%s is %s", url,check)
 	}
-	func main() {
-		start := time.Now()
+// 	func main() {
+// 		start := time.Now()
 		
-		var wg  sync.WaitGroup 
-		sites := []string{"google.com", "zip.com", "doesnotexist.com",}
-		status := make(chan string, len(sites))
-		file , err := os.Create("status.txt")
-		if err != nil {
-			log.Fatal("Couldn't create the status.txt file")
-		}
-		defer file.Close()
-		if err != nil {
-			log.Fatal("the file had some management issues.\n")
-		}
+// 		var wg  sync.WaitGroup 
+// 		sites := []string{"google.com", "zip.com", "doesnotexist.com",}
+// 		status := make(chan string, len(sites))
+// 		file , err := os.Create("status.txt")
+// 		if err != nil {
+// 			log.Fatal("Couldn't create the status.txt file")
+// 		}
+// 		defer file.Close()
+// 		if err != nil {
+// 			log.Fatal("the file had some management issues.\n")
+// 		}
 
-	for i:= 0 ; i<3; i++{
-		wg.Add(1)
-		go analyse_status_websitev(sites[i],status, &wg )
+// 	for i:= 0 ; i<3; i++{
+// 		wg.Add(1)
+// 		go analyse_status_websitev(sites[i],status, &wg )
 		
-	}
-	go func() {
-		wg.Wait()
-		close(status)
-	}()	
-	for msg := range status{
-		fmt.Println(msg)
-		message_line := msg+"\n"
-		file.WriteString(message_line)
+// 	}
+// 	go func() {
+// 		wg.Wait()
+// 		close(status)
+// 	}()	
+// 	for msg := range status{
+// 		fmt.Println(msg)
+// 		message_line := msg+"\n"
+// 		file.WriteString(message_line)
 
-	}
-	fmt.Printf("the time took for this programme to finish is %v seconds\n", start.Second())
-}
+// 	}
+// 	fmt.Printf("the time took for this programme to finish is %v seconds\n", start.Second())
+// }
