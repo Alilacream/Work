@@ -1,4 +1,4 @@
-package Mat 
+package Mat
 
 import (
 	"bufio"
@@ -17,32 +17,12 @@ func Printmatrice(m [][]int) {
 }
 
 func Determinant3x3(m [][]int) int {
-	a := m[0][0]
-	b := m[0][1]
-	c := m[0][2]
-	d := m[1][0]
-	e := m[1][1]
-	f := m[1][2]
-	g := m[2][0]
-	h := m[2][1]
-	i := m[2][2]
-
-	return a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g)
+		AssignABCtoI(m)
+		return a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g)
 }
 // this function purpose is only for the 3x3 dimensionale matrices ONLY!!
 func Con3x3(m [][]int, line,row int) [][]int {
-	a := m[0][0]
-	b := m[0][1]
-	c := m[0][2]
-	d := m[1][0]
-	e := m[1][1]
-	f := m[1][2]
-	g := m[2][0]
-	h := m[2][1]
-	i := m[2][2]
-
-	// making another matrice because i cannot change the values in the m directly , or asign it as a pointer, might also change the values of m
-	// made it a two dimension,with range of lines = line 
+	AssignABCtoI(m)	// made it a two dimension,with range of lines = line 
 	m_Con := make([][]int, line)
 	//and asigned each row
 	for i := range m_Con{
@@ -83,7 +63,7 @@ func Matrice() {
 	for i := range Table{
 		Table[i] = make([]int , row_int)
 	}
-	fmt.Println("Print the number for your matrice")
+	fmt.Println("Print the number for your matrice:")
 	for i:= 0 ; i <line_int;i++ {
 		for j :=0; j<row_int;j++ {
 			if scanner.Scan() {
