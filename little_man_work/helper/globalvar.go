@@ -59,3 +59,14 @@ func Con3x3(m [][]int, line,row int) [][]int {
 	return m_Con
 }
 
+func Transpose3x3(m [][]int) [][]int {
+	assignABCtoI(m)
+	m[0][1] = d
+	m[0][2] = g 
+	m[1][0] = b
+	m[1][2] = h 
+	m[2][0] = c
+	m[2][1] = f
+	return m
+}
+
