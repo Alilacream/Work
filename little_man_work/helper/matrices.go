@@ -9,9 +9,11 @@ import (
 )
 
 func Matrice() {
+	var MatrixName string	
 	if (len(os.Args)!= 3) {
 		log.Fatal("Need three arguments")
 	}
+
 	line := os.Args[1]
 	row := os.Args[2]
 	line_int, err:= strconv.Atoi(line)
@@ -20,6 +22,12 @@ func Matrice() {
 		log.Fatal("Either the number of Row or Line is invalid")
 	}
 	scanner := bufio.NewScanner(os.Stdin)
+
+	fmt.Println("Give your matrice a name:")
+
+	if scanner.Scan() {
+		MatrixName = scanner.Text()
+	}
 
 	Table := make([][]int , line_int)
 	for i := range Table{
@@ -53,12 +61,13 @@ func Matrice() {
 
 			case 1 :
 			determinant := Determinant3x3(Table) 
-			fmt.Printf("The Determinant of the matrice is %d\n", determinant)
+			fmt.Printf("The Determinant of the matrice %s is %d\n", MatrixName, determinant)
 
 			case 2:
 				transpose := Transpose3x3(Table)
-				fmt.Println("Le Transpose de matrice est:")
+				fmt.Printf("Le Transpose de Matrice %s est:\n", MatrixName)
 				Printmatrice(transpose)
+
 			case 3:
 				Coematrice_transopose := Transpose3x3((Con3x3(Table,line_int,row_int)))
 				determinant := (Determinant3x3(Table))
@@ -66,17 +75,18 @@ func Matrice() {
 					log.Fatal("The determinant is equal to 0, this matrix cannot be reversed")
 				}
 				determinant_str := strconv.Itoa(determinant)
-				fmt.Println("The Inverse:")
+				fmt.Printf("The Inverse of the matrix %s is :\n", MatrixName)
 				fmt.Printf("%s\n", determinant_str)
 				fmt.Println("Mutliplied by:")
 				Printmatrice(Coematrice_transopose)
+
 			case 4:
 			Table_con := Con3x3(Table, line_int, row_int)
-			fmt.Println("The Coematrice of the Table:")
+			fmt.Printf("The Coematrice of the matrix %s is:\n", MatrixName)
 			Printmatrice(Table_con)
 
 			case 5:
-				fmt.Println("The Matrice you assigned:")
+				fmt.Printf("The Matrice %s you assigned:\n", MatrixName)
 				Printmatrice(Table)
 
 			default:
